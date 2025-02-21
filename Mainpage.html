@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamba Fashions Icon</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<style>
+    
+        .icon {
+            font-size: 48px; /* Size of the icon */
+            color: #f56b2a;  /* Color of the icon */
+        }
+        .icon:hover {
+            color: #d35400; /* Change color on hover */
+        }
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+       
+        @media screen and (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 12px;
+                width: 100%;
+            }
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 1s ease;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .dots-container {
+            text-align: center;
+            padding: 10px;
+        }
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active {
+            background-color: #717171;
+        }
+</style>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="./Home.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <center><div>
+        <i class="fas fa-shopping-bag icon"></i>
+        <i class="fas fa-tshirt icon"></i>
+    <p>Jamba Fashions</p>
+</div></center>
+    
+  
+   
+    <marquee behavior="slide" direction="left"><h1>FASHION AND DESIGN</h1></marquee><br><br><br><br><br><br><br>
+    <div class="slideshow-container"></div>
+        
+        <div class="slides">
+            <div class="slide">
+                <img src="puma.jpeg" alt="Puma">
+            </div>
+            <div class="slide">
+                <img src="AM.jpeg" alt="Amiri">
+            </div>
+            <div class="slide">
+                <img src="LV.jpeg" alt="Louis Vuitton">
+            </div>
+            <div class="slide">
+                <img src="GUCC.jpeg" alt="Gucci">
+            </div>
+        </div>
+
+        
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    
+    <div class="dots-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function changeSlide(n) {
+            currentIndex += n;
+            if (currentIndex >= document.querySelectorAll('.slide').length) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = document.querySelectorAll('.slide').length - 1;
+            }
+            updateSlide();
+        }
+
+        function currentSlide(n) {
+            currentIndex = n - 1;
+            updateSlide();
+        }
+
+        function updateSlide() {
+            const slides = document.querySelector('.slides');
+            const dots = document.querySelectorAll('.dot');
+            const totalSlides = document.querySelectorAll('.slide').length;
+
+            if (currentIndex >= totalSlides) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = totalSlides - 1;
+            }
+
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        setInterval(() => changeSlide(1), 3000); // Automatically change slide every 3 seconds
+
+    </script>
+    
+</body>
+</html>
